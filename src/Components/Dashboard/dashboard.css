@@ -1,0 +1,31 @@
+/* .page {
+  height: 100vh;
+  background-color: whitesmoke;
+  display: flex;
+  
+  
+ 
+
+}
+
+.content{
+  display: grid;
+  height: 94%;
+  width: 97%;
+  border: 2px;
+  overflow: hidden;
+  grid-template-columns: 15rem auto;
+  gap: 1rem;
+  margin-left: 1%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.sidebar{
+background-color: white;
+}
+
+.dashboard{
+  background-color: white;
+}
+ */
