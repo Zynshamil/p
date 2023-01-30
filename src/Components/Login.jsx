@@ -5,31 +5,14 @@ import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import { Divider } from "@mui/material";
+import axios from "axios";
 
-// function Copyright(props) {
-//   return (
-//     <Typography
-//       variant="body2"
-//       color="text.secondary"
-//       align="center"
-//       {...props}
-//     >
-//       {"Copyright © "}
-//       <Link color="inherit" href="https://mui.com/">
-//         Your Website
-//       </Link>{" "}
-//       {new Date().getFullYear()}
-//       {"."}
-//     </Typography>
-//   );
-// }
 
 const theme = createTheme();
 
@@ -45,23 +28,20 @@ export default function Login() {
     // });
     event.preventDefault();
 
-    fetch('http://13.232.128.66:8080/gj-erp/auth/login', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({
-    username: data.get("email"),
-    password: data.get("password"),
-  })
-})
-.then(res => res.json())
-.then(result=>{
-console.log("res",result)  
-if(result.success){
-navigate("/dashboard")
-}else{
-  alert("invalid credeantiol")
-}
-});
+    // Axios
+    
+    axios.post('http://13.232.128.66:8080/gj-erp/auth/login', {
+      username: data.get("email"),
+      password: data.get("password"),
+    })
+      .then(response => {
+        console.log("res", response)
+        if (response.data.success) {
+          navigate("/dashboard")
+        } else {
+          alert("invalid credeantiol")
+        }
+      });
   };
 
   return (
@@ -69,7 +49,7 @@ navigate("/dashboard")
       <Container component="main" maxWidth="xs"
         sx={{
           border: 1,
-          borderColor:"lightgray",
+          borderColor: "lightgray",
           mt: 5,
         }}
       >
@@ -144,22 +124,22 @@ navigate("/dashboard")
             >
               Sign In
             </Button>
-              <Divider sx={{fontSize:'12px', color:"gray"}}>OR CONTINUE WITH</Divider>
-              <Box width="100" sx={{
-            marginTop: 4,
-            display: "flex",
-            flexDirection: "row",
-            width:"100%",
-            gap:"15px",
-            justifyContent:"center"
-          }}>
-                <Button sx={{background:"lightgray",color:"black",px:3,fontWeight:"bold"}}>Google</Button>
-                <Button sx={{background:"lightgray",color:"black",px:3,fontWeight:"bold"}}>Facebook</Button>
-                <Button sx={{background:"lightgray",color:"black",px:3,fontWeight:"bold"}}>Twitter</Button>
-              </Box>
+            <Divider sx={{ fontSize: '12px', color: "gray" }}>OR CONTINUE WITH</Divider>
+            <Box width="100" sx={{
+              marginTop: 4,
+              display: "flex",
+              flexDirection: "row",
+              width: "100%",
+              gap: "15px",
+              justifyContent: "center"
+            }}>
+              <Button sx={{ background: "lightgray", color: "black", px: 3, fontWeight: "bold" }}>Google</Button>
+              <Button sx={{ background: "lightgray", color: "black", px: 3, fontWeight: "bold" }}>Facebook</Button>
+              <Button sx={{ background: "lightgray", color: "black", px: 3, fontWeight: "bold" }}>Twitter</Button>
+            </Box>
           </Box>
         </Box>
-        {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
+       
 
         <Typography variant="body2"
           color="text.secondary"
