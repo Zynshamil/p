@@ -10,16 +10,20 @@ import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import { TableCell, Table, TableRow } from '@mui/material';
+import { TableCell, Table, TableRow, Link, MenuItem, OutlinedInput, FormControl, Select } from '@mui/material';
 import Button from "@mui/material/Button";
-
+import "./dashboard.css";
 const drawerWidth = 240;
 
 export default function ClippedDrawer() {
   const options = ['option1', 'option2'];
+  const list = [
+    'Option1',
+    'Option2',
+    
+  ];
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -68,7 +72,7 @@ export default function ClippedDrawer() {
             ))}
           </List>
           <Typography sx={{
-            ml:2,mt:30, 
+            ml: 2, mt: 30,
           }}>
             Settings
           </Typography>
@@ -88,26 +92,33 @@ export default function ClippedDrawer() {
           By Entering below details you can create new Business
         </Typography>
 
-        <Typography variant='subtitle2'>
-          (1)  Select Category
-          (2)  Add product Details
+        <Typography class="tab-div" variant='subtitle2'>
+          <Typography class="tab"><Box class="tab-number">1 </Box>  <Typography class="tab-name active">Select Category</Typography></Typography>
+          <Typography class="tab"><Box class="tab-number">2</Box>   <Typography class="tab-name active">Add product Details</Typography></Typography>
         </Typography> <br />
 
-        <Table>
+        <Table sx={{width:'600px'}}>
           <TableRow>
             <TableCell>
               <Typography variant='subtitle' sx={{ fontWeight: 'bold' }}>
                 Category
-              </Typography>
-              <Autocomplete
-                disablePortal
-                id="combo-box-demo"
-                size="small"
-                options={options}
-                sx={{ width: 300, bgcolor: "whitesmoke" }}
-                renderInput={(params) => <TextField {...params} label="Choose Category" />}
-              />
+              </Typography><br></br>
 
+              <FormControl sx={{ ml: 0, width: 300 }}>
+                <Select
+                  displayEmpty
+                  inputProps={{ 'aria-label': 'Without label' }}
+                >
+                  <MenuItem disabled value="">
+                    <em>Choose Category</em>
+                  </MenuItem>
+                  {list.map((item) => (
+                    <MenuItem>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
 
 
             </TableCell>
@@ -115,65 +126,90 @@ export default function ClippedDrawer() {
               <Typography variant='subtitle' sx={{ fontWeight: 'bold' }}>
                 Description
               </Typography>
-              <Autocomplete
-                disablePortal
-                id="combo-box-demo"
-                size="small"
-                options={options}
-                sx={{ width: 300, bgcolor: "whitesmoke" }}
-                renderInput={(params) => <TextField {...params} label="type anything" />}
-              />
+              <br></br>
+
+              <FormControl sx={{ ml: 0, width: 300 }}>
+                <Select
+                  displayEmpty
+                  inputProps={{ 'aria-label': 'Without label' }}
+                >
+                  <MenuItem disabled value="">
+                    <em>type anything</em>
+                  </MenuItem>
+                  {list.map((item) => (
+                    <MenuItem>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
             </TableCell>
-            <TableCell>
-          <Button sx={{background:"#00CED1",color:"white",borderRadius:"50%",width:"10px",height:"55px"}}>+</Button>
-          </TableCell>
+            <TableCell><Button class="plus-btn">+</Button></TableCell>
           </TableRow>
           <TableRow>
             <TableCell>
               <Typography variant='subtitle' sx={{ fontWeight: 'bold' }}>
                 Sub Cateogory
               </Typography>
-              <Autocomplete
-                disablePortal
-                id="combo-box-demo"
-                size="small"
-                options={options}
-                sx={{ width: 300, bgcolor: "whitesmoke" }}
-                renderInput={(params) => <TextField {...params} label="Choose Sub Cateogory" />}
-              />
+              <br></br>
+
+              <FormControl sx={{ ml: 0, width: 300 }}>
+                <Select
+                  displayEmpty
+                  inputProps={{ 'aria-label': 'Without label' }}
+                >
+                  <MenuItem disabled value="">
+                    <em>Choose Sub Category</em>
+                  </MenuItem>
+                  {list.map((item) => (
+                    <MenuItem>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
             </TableCell>
             <TableCell>
 
-            <Typography variant='subtitle' sx={{ fontWeight: 'bold' }}>
-          Description
-        </Typography>
-        <Autocomplete
-          disablePortal
-          id="combo-box-demo"
-          size="small"
-          options={options}
-          sx={{ width: 300, bgcolor: "whitesmoke" }}
-          renderInput={(params) => <TextField {...params} label="type anything" />}
-        />
+              <Typography variant='subtitle' sx={{ fontWeight: 'bold' }}>
+                Description
+              </Typography>
+              <br></br>
+
+              <FormControl sx={{ ml: 0, width: 300 }}>
+                <Select
+                  displayEmpty
+                  inputProps={{ 'aria-label': 'Without label' }}
+                >
+                  <MenuItem disabled value="">
+                    <em>type any thing</em>
+                  </MenuItem>
+                  {list.map((item) => (
+                    <MenuItem>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
             </TableCell>
-            
-          <TableCell>
-          <Button sx={{background:"#00CED1",color:"white",borderRadius:"50%",width:"10px",height:"55px"}}>+</Button>
-          </TableCell>
+
+            <TableCell>
+              <Button class="plus-btn">+</Button>
+            </TableCell>
           </TableRow>
 
         </Table>
 
         <Box sx={{
           display: "flex",
-            flexDirection: "row",
-            justifyContent:"flex-end",
-            mt:20,gap:"10px"
+          flexDirection: "row",
+          justifyContent: "flex-end",
+          mt: 15,mr:10, gap: "10px"
 
-            }}>
-              <Button sx={{background:"	#00CED1",color:"white",p:1}}>Edit</Button>
-              <Button sx={{background:"red",color:"white",p:1}}>Delete</Button>
-              <Button sx={{background:"#BF40BF",color:"white",p:1}}>Save</Button>
+        }}>
+          <Button sx={{ background: "	#00CED1", color: "white", px: 2 }}>Edit</Button>
+          <Button sx={{ background: "red", color: "white", px: 2 }}>Delete</Button>
+          <Button sx={{ background: "#BF40BF", color: "white", px: 2 }}>Save</Button>
 
         </Box>
 
